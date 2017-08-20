@@ -1,0 +1,1 @@
+Removed public variables

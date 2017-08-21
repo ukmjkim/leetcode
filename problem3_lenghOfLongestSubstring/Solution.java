@@ -11,7 +11,7 @@ public class Solution {
 				maxLength = Math.max(ans, j - i);
 				if (ans < maxLength) {
 					ans = maxLength;
-					System.out.println("Substring found: [" + i + ":" + (i + ans) + "]" + s.substring(i, i+ans));
+					// System.out.println("Substring found: [" + i + ":" + (i + ans) + "]" + s.substring(i, i+ans));
 				}
 			} else {
 				set.remove(s.charAt(i++));
@@ -32,6 +32,7 @@ public class Solution {
 			}
 			ans = Math.max(ans, j - i);
 			map.put(s.charAt(j), j);
+			/*
 			if (hit) {
 				Set set = map.entrySet();
 				Iterator iterator = set.iterator();
@@ -42,6 +43,7 @@ public class Solution {
 				System.out.println("");
 				hit = false;
 			}
+			*/
 		}
 		System.out.println("Result: " + ans);
 		return ans;
@@ -52,10 +54,10 @@ public class Solution {
 
 		long duration1 = 0, duration2 = 0, startTime = 0, endTime = 0;
 		int result = 0;
+		Scanner sc = new Scanner(System.in);
 		while (true) {
-			Scanner sc = new Scanner(System.in);
 			String input = sc.nextLine();
-			if (input == "") break;
+			if (input.length() == 0) break;
 
 			startTime = System.nanoTime();
 			result = solution.lengthOfLongestSubstringApproach2(input);
@@ -69,5 +71,6 @@ public class Solution {
 
 			System.out.println("Approach2 Execution Time: " + duration1 + ", Approach3 Execution Time: " + duration2);
 		}
+		sc.close();
 	}
 }

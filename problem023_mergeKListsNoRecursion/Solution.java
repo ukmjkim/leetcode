@@ -1,29 +1,31 @@
 import java.util.*;
 
 public class Solution {
-	public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-		if (l1 == null) {
-			return l2;
-		}
-		if (l2 == null) {
-			return l1;
-		}
-
+	public ListNode mergeKLists(ListNode[] list) {
 		ListNode mergeHead = new ListNode(0);
-		ListNode part1 = l1, part2 = l2, curr = mergeHead;
+		ListNode curr = mergeHead;
 
-		while (part1 != null || part2 != null) {
-			int x = (part1 != null) ? part1.val : 10;
-			int y = (part2 != null) ? part2.val : 10;
-
-			if (x < y) {
-				curr.next = new ListNode(x);
-				part1 = part1.next;
-			} else {
-				curr.next = new ListNode(y);
-				part2 = part2.next;
+		int lengthOfArray = list.length;
+		while (true) {
+			int countOfNull = 0;
+			int minValue = Integer.MAX_VALUE;
+			int minValueIndex = 99;
+			for (int i = 0; i < lengthOfArray; i++) {
+				if (list[i] == null) {
+					countOfNull++;
+				} else {
+					if (minValue > list[i].val) {
+						minValueIndex = i;
+						minValue = list[i].val;
+					}
+				}
 			}
+			if (countOfNull == lengthOfArray) {
+				break;
+			}
+			curr.next = new ListNode(list[minValueIndex].val);	
 			curr = curr.next;
+			list[minValueIndex] = list[minValueIndex].next;
 		}
 
 		return mergeHead.next;
@@ -49,13 +51,16 @@ public class Solution {
 	}
 
 	public static void main(String[] args) {
-		int number1 = 4129, number2 = 382;
+		int number1 = 4129, number2 = 382, number3 = 760;
 
 		ListNode l1 = convertInteger2ListNode(number1);
 		ListNode l2 = convertInteger2ListNode(number2);
+		ListNode l3 = convertInteger2ListNode(number3);
+
+		ListNode[] lists = new ListNode[] {l1, l2, l3};
 
 		Solution solution = new Solution();
-		ListNode result = solution.mergeTwoLists(l1, l2);
+		ListNode result = solution.mergeKLists(lists);
 		System.out.print("Result: ");
 		String sep = "";
 		while (result != null) {

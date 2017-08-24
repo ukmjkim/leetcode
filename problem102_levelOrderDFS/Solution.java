@@ -17,14 +17,6 @@ public class Solution {
 		levelHelper(res, root.right, height+1);
 	}
 
-	private void add(TreeNode parent, TreeNode child, String orientation) {
-		if (orientation.equals("left")) {
-			parent.left = child;
-		} else {
-			parent.right = child;	
-		}
-	}
-
 	private TreeNode makeTree() {
 		// int[] nums = {3, 9, 20, null, null, 15, 7}
 

@@ -19,3 +19,6 @@ Example 2:
 Binary tree [1,2,3], return false.
 
 
+Reference
+http://algorithms.tutorialhorizon.com/binary-search-tree-complete-implementation/
+

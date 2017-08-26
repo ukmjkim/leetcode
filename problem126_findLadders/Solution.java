@@ -102,8 +102,8 @@ public class Solution {
 
 	public static void main(String[] args) {
 		String beginWord = "hit";
-		String endWord = "cog";
-		List<String> wordList = new ArrayList<String>(Arrays.asList("hot", "dot", "dog", "lot", "log", "cog"));
+		String endWord = "cob";
+		List<String> wordList = new ArrayList<String>(Arrays.asList("hot", "dot", "dog", "lot", "log", "cog", "cob"));
 		Solution solution = new Solution();
 		List<List<String>> result = solution.findLadders(beginWord, endWord, wordList);
 		System.out.println(result);

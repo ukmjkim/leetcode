@@ -7,13 +7,13 @@ For example,
 
 Given:
 beginWord = "hit"
-endWord = "cog"
-wordList = ["hot","dot","dog","lot","log","cog"]
+endWord = "cob"
+wordList = ["hot","dot","dog","lot","log","cog", "cob"]
 Return
 
   [
-    ["hit","hot","dot","dog","cog"],
-    ["hit","hot","lot","log","cog"]
+    ["hit","hot","dot","dog","cog", "cob"],
+    ["hit","hot","lot","log","cog", "cob"]
   ]
 
 Note:
@@ -25,7 +25,7 @@ Note:
 
 
 
-hit ---- hot----- lot ----- log ----- cog
+hit ---- hot----- lot ----- log ----- cog ---- cob
           \                          /
 			\                      /
               \                  /

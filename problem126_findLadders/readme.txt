@@ -27,7 +27,7 @@ Note:
 
 hit ---- hot----- lot ----- log ----- cog ---- cob
           \                          /
-			\                      /
+            \                      /
               \                  /
                   dot ----- dog
 

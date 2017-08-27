@@ -32,3 +32,6 @@ hit ---- hot----- lot ----- log ----- cog ---- cob
                   dot ----- dog
 
 
+http://www.jianshu.com/p/ece0d5d441dc
+http://javabypatel.blogspot.ca/2015/10/word-ladder-doublets-word-links-word-golf.html
+

@@ -13,12 +13,15 @@ public class Solution {
 		Map<Integer, List<String>> graph = new HashMap<Integer, List<String>>();
 
 		bfs(graph, s, dict);
+
+		System.out.println("graph");
 		System.out.println(graph);
 
 		List<String> path = new ArrayList<String>();
 		dfs(res, path, s.length(), graph, s);
 
-		System.out.println(path);
+		System.out.println("res");
+		System.out.println(res);
 
 		return res;
 	}
@@ -49,16 +52,16 @@ public class Solution {
 
 	public static void dfs(List<String> res, List<String> path, int start, Map<Integer, List<String>> graph, String s) {
 		if (start == 0) {
+System.out.println("path: " + path.toString());
 			res.add(path.toString());
 			return;
 		}
 
-// System.out.print(start + ": ");
 		for (String word : graph.get(start)) {
 			path.add(0, word);
-// System.out.println(path);
-			start = start - (word.length() - 1);
-			dfs(res, path, start-1, graph, s);
+System.out.println(start + ": " + word);
+			dfs(res, path, (start - word.length()), graph, s);
+			path.remove(0);
 		}
 	}
  
@@ -67,6 +70,5 @@ public class Solution {
 		List<String> wordDict = new ArrayList<String>(Arrays.asList("cat", "cats", "and", "sand", "dog"));
 		Solution solution = new Solution();
 		List<String> sentenceList = solution.wordBreak(fullString, wordDict);
-		System.out.println(sentenceList);
 	}
 }

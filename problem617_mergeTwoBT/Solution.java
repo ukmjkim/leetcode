@@ -1,116 +1,89 @@
+import java.util.*;
+
 public class Solution {
-	public TreeNode mergeTrees(TreeNode t1, TreeNode t2) {
-		if (t1 == null & t2 == null) return null;
+  public TreeNode mergeTrees(TreeNode t1, TreeNode t2) {
+    if (t1 == null && t2 == null)  return null;
+    
+    int val = (t1 == null ? 0 : t1.val) + (t2 == null ? 0 : t2.val);
+    TreeNode newNode = new TreeNode(val);
 
-		int val = (t1 == null ? 0 : t1.val) + (t2 == null ? 0 : t2.val);
-		TreeNode newNode = new TreeNode(val);
+    newNode.left = mergeTrees(t1 == null ? null : t1.left, t2 == null ? null : t2.left);
+    newNode.right = mergeTrees(t1 == null ? null : t1.right, t2 == null ? null : t2.right);
+    
+    return newNode;
+  }
 
-		newNode.left = mergeTrees(t1 == null ? null : t1.left, t2 == null ? null : t2.left);
-		newNode.right = mergeTrees(t1 == null ? null : t1.right, t2 == null ? null : t2.right);
+  public static void main(String[] args) {
+    BinaryTree bt1 = new BinaryTree();
+    bt1.insertRoot(1);
+    bt1.insertLeft(bt1.root, 3);
+    bt1.insertRight(bt1.root, 2);
+    bt1.insertLeft(bt1.root.left, 5);
 
-		return newNode;
-	}
+    BinaryTree bt2 = new BinaryTree();
+    bt2.insertRoot(2);
+    bt2.insertLeft(bt2.root, 1);
+    bt2.insertRight(bt2.root, 3);
+    bt2.insertRight(bt2.root.left, 4);
+    bt2.insertRight(bt2.root.right, 7);
 
-	private static TreeNode initializeTree1() {
-		BinaryTree bt = new BinaryTree();
+    bt1.display(bt1.root);
+    bt2.display(bt2.root);
 
-		bt.insertRoot(1);
-		bt.insertLeft(3, bt.root);
-		bt.insertRight(2, bt.root);
-		bt.insertLeft(5, bt.root.left);
-		bt.display(bt.root);
+    Solution solution = new Solution();
+    TreeNode mergedNode = solution.mergeTrees(bt1.root, bt2.root);
 
-		return bt.root;
-	}
-
-	private static TreeNode initializeTree2() {
-		BinaryTree bt = new BinaryTree();
-
-		bt.insertRoot(2);
-		bt.insertLeft(1, bt.root);
-		bt.insertRight(3, bt.root);
-		bt.insertRight(4, bt.root.left);
-		bt.insertRight(7, bt.root.right);
-		bt.display(bt.root);
-
-		return bt.root;
-	}
-
-	private static void display(TreeNode root) {
-		if (root != null) {
-			display(root.left);
-			System.out.print(" " + root.val);
-			display(root.right);
-		} else {
-			System.out.println("");
-		}
-	}
-
-	public static void main(String[] args) {
-		TreeNode t1 = initializeTree1();
-		TreeNode t2 = initializeTree2();
-
-		Solution solution = new Solution();
-		TreeNode head = solution.mergeTrees(t1, t2);
-		
-		display(head);
-
-	}
-}
-
-class BinaryTree {
-	public static TreeNode root;
-	public BinaryTree() {
-		this.root = null;
-	}
-
-	public void insertRoot(int id) {
-		this.root = new TreeNode(id);
-	}
-
-	public void insertLeft(int id, TreeNode parent) {
-		TreeNode newNode = new TreeNode(id);
-		parent.left = newNode;
-	}
-
-	public void insertRight(int id, TreeNode parent) {
-		TreeNode newNode = new TreeNode(id);
-		parent.right = newNode;
-	}
-
-	public TreeNode findNode(TreeNode root, int id) {
-		TreeNode result = null;
-
-		if (root == null) {
-			return null;
-		}
-		if (root.val == id) {
-			return root;
-		}
-		if (root.left != null) {
-			result = findNode(root.left, id);
-		}
-		if (result == null) {
-			result = findNode(root.right, id);
-		}
-
-		return result;
-	}
-
-	public void display(TreeNode root) {
-		if (root != null) {
-			display(root.left);
-			System.out.print(" " + root.val);
-			display(root.right);
-		} else {
-			System.out.println("");
-		}
-	}
+    Stack<TreeNode> s = new Stack<>();
+    TreeNode cur = mergedNode; 
+    while (!s.empty() || cur != null) {
+      if (cur != null) {
+        s.push(cur);
+        cur = cur.left;
+      } else {
+        TreeNode n = s.pop();
+        System.out.print(" " + n.val);
+        cur = n.right;
+      }
+    }
+  }
 }
 
 class TreeNode {
-	int val;
-	TreeNode left;
-	TreeNode right;
-	TreeNode (int x) { this.val = x; }
+  int val;
+  TreeNode left;
+  TreeNode right;
+  TreeNode(int x) { this.val = x; }
 }
+
+class BinaryTree {
+  public TreeNode root;
+  
+  public BinaryTree() {
+    this.root = null;
+  }
+
+  public void insertRoot(int id) {
+    this.root = new TreeNode(id);
+  }
+
+  public void insertLeft(TreeNode parent, int id) {
+    TreeNode newNode = new TreeNode(id);
+    parent.left = newNode;
+  }
+  
+  public void insertRight(TreeNode parent, int id) {
+    TreeNode newNode = new TreeNode(id);
+    parent.right = newNode;
+  }
+  
+  public void display(TreeNode root) {
+    if (root != null) {
+      display(root.left);
+      System.out.print(" " + root.val);
+      display(root.right);
+    } else {
+      System.out.println("");
+    }
+  }
+}
+

@@ -1,30 +1,43 @@
-import java.util.*;
-
 public class Solution {
-	public int reverse(int x) {
-		int result = 0;
-		while (x != 0) {
-			int tail = x % 10;
-			int newResult = result * 10 + tail;
-			if ((newResult - tail) / 10 != result) { return 0; }
-			result = newResult;
-			x = x / 10;
-		}
-		return result;
-	}
+  public int reverse(int x) {
+    int result = 0;
+    while (x != 0) {
+      int tail = x % 10;
+      int newResult = result * 10 + tail;
+      
+      // Overflow check
+      if ((newResult - tail) / 10 != result) { return 0; }
+      result = newResult;
+      x = x / 10;
+    }
+    
+    return result;
+  }
 
-	public static void main(String[] args) {
-		Solution solution = new Solution();
-		Scanner sc = new Scanner(System.in);
-		while (true) {
-			String input = sc.nextLine();
-			if (input.length() == 0) break;
+  /* This solution will have overflow issue
+  public int reverse(int x) {
+    if (x == 0) return 0;
 
-			int x = Integer.parseInt(input);
-			int result = solution.reverse(x);
-			System.out.println("Result: " + result);
-		}
-		sc.close();
-	}
+    int sign = 1;
+    if (x < 0) {
+      sign = -1;
+      x *= -1;
+    }
+    String newNum = "";
+    while (x > 0) {
+      int digit = x % 10;
+      newNum += digit;
+      x = x / 10;
+    }
+    
+    return Integer.parseInt(newNum) * sign;
+  }
+  */
+
+  public static void main(String[] args) {
+    int num = -413;
+
+    Solution solution = new Solution();
+    System.out.println("Result: " + solution.reverse(num));
+  }
 }
-

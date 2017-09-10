@@ -21,3 +21,5 @@ Merged tree:
 
 Note: The merging process must start from the root nodes of both trees.
 
+[Solution]
+https://leetcode.com/articles/merge-two-binary-trees/

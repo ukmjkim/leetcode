@@ -14,17 +14,23 @@ public class Solution {
     int depth = 0;
     Queue<TreeNode> queue = new LinkedList<>();
     queue.offer(root);
-    
+    int curLevel = 1;
+    int nextLevel = 0;
     while (!queue.isEmpty()) {
-      depth++;
-      
-      for (int i = 0, n = queue.size(); i < n; i++) {
-        TreeNode node = queue.poll();
-        
-        if (node.left != null)
-          queue.offer(node.left);
-        if (node.right != null)
-          queue.offer(node.right);
+      TreeNode node = queue.poll();
+      curLevel--;
+      if (node.left != null) {
+        queue.offer(node.left);
+        nextLevel++;
+      }
+      if (node.right != null) {
+        queue.offer(node.right);
+        nextLevel++;
+      }
+      if (curLevel == 0) {
+        curLevel = nextLevel;
+        nextLevel = 0;
+        depth++;
       }
     }
     return depth;
@@ -56,5 +62,4 @@ class TreeNode {
   TreeNode right;
   TreeNode(int x) { val = x; }
 }
-
 

@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Solution {
-  public int[] intersection(int[] nums1, int[] nums2) {
+  public int[] intersect(int[] nums1, int[] nums2) {
     HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
     ArrayList<Integer> result = new ArrayList<Integer>();
 
@@ -36,7 +36,7 @@ public class Solution {
     int[] nums2 = {2, 2};
 
     Solution solution = new Solution();
-    int[] result = solution.intersection(nums1, nums2);
+    int[] result = solution.intersect(nums1, nums2);
     System.out.println(Arrays.toString(result));
   }
 }

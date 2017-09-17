@@ -5,28 +5,16 @@ public class Solution {
     if (s == null || s.length() == 0) return 0;
 
     int count = 0;
-    boolean spaceStart = false;
-    boolean spaceEnd = false;
-    int start = 0;
-    int end = s.length()-1;
-    while (start < end) {
-      if (spaceStart == false && s.charAt(start) == ' ') {
+    char prevChar = ' ';
+    for (int i = 0; i < s.length(); i++) {
+      if (prevChar == ' ' && s.charAt(i) != ' ') {
         count++;
-        spaceStart = true;
-      } else if (s.charAt(start) != ' ') {
-        spaceStart = false;
       }
-      if (spaceEnd == false && s.charAt(end) == ' ') {
-        count++;
-        spaceEnd = true;
-      } else if (s.charAt(end) != ' ') {
-        spaceEnd = false;
-      }
-      start++;
-      end--;
+      prevChar = s.charAt(i);
     }
+        
     
-    return count+1;
+    return count;
   }
 
   public static void main(String[] args) {
@@ -39,7 +27,12 @@ public class Solution {
 
     s = "Hello, my   name is John";
     System.out.printf("countSegments(%s): %d\n", s, solution.countSegments(s));
+
+    s = "         ";
+    System.out.printf("countSegments(%s): %d\n", s, solution.countSegments(s));
+
+    s = "Hello";
+    System.out.printf("countSegments(%s): %d\n", s, solution.countSegments(s));
   }
 }
-
 

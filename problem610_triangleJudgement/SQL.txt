@@ -1,0 +1,24 @@
+# Write your MySQL query statement below
+SELECT x, y, z, 
+    IF((x <= z and y <= z and x + y > z) or (x <= y and z <= y and x + z > y) or (y <= x and z <= x and y + z > x), 'Yes', 'No')
+    AS triangle
+FROM triangle
+
+
+
+# Write your MySQL query statement below
+SELECT x, y, z, 
+    IF(x + y > z and x + z > y and y + z > x, 'Yes', 'No')
+    AS triangle
+FROM triangle
+
+
+
+# Write your MySQL query statement below
+SELECT x, y, z, 
+    IF(x + y <= z or x + z <= y or y + z <= x, 'No', 'Yes')
+    AS triangle
+FROM triangle
+
+
+

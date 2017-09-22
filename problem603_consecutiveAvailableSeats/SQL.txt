@@ -1,0 +1,32 @@
+# Write your MySQL query statement below
+SELECT seat_id
+FROM cinema
+WHERE 
+    free = 1 
+    AND
+    (
+    seat_id + 1 IN (SELECT seat_id FROM cinema WHERE free = 1)
+    OR
+    seat_id - 1 IN (SELECT seat_id FROM cinema WHERE free = 1)
+    )
+
+
+
+# Write your MySQL query statement below
+SELECT DISTINCT c1.seat_id
+FROM cinema as c1, cinema as c2
+WHERE c1.free = 1 and c2.free = 1 and (c1.seat_id - 1 = c2.seat_id or c1.seat_id + 1 = c2.seat_id);
+
+
+
+# Write your MySQL query statement below
+SELECT DISTINCT c1.seat_id
+FROM cinema as c1 
+JOIN cinema as c2
+ON (c1.seat_id - 1 = c2.seat_id or c1.seat_id + 1 = c2.seat_id)
+    AND c1.free = 1
+    AND c2.free = 1;
+
+
+
+

@@ -1,0 +1,6 @@
+# Write your MySQL query statement below
+SELECT IF (R.c = 0, 0.00, cast(A.c / R.c as decimal(4,2)))
+AS accept_rate
+FROM (SELECT count(DISTINCT requester_id, accepter_id) AS c FROM request_accepted) AS A
+JOIN (SELECT count(DISTINCT sender_id, send_to_id) AS c FROM friend_request) AS R
+

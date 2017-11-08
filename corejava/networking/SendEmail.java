@@ -17,6 +17,10 @@ public class SendEmail {
     // Get system properties
     Properties properties = System.getProperties();
 
+    properties.put("mail.smtp.host", "localhost");
+    properties.put("mail.debug", "true");
+
+
     // Setup mail server
     Session session = Session.getDefaultInstance(properties);
 

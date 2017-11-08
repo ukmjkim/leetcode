@@ -1,3 +1,7 @@
+// indices of the two numbers
+// no sort
+// no Brute Force
+
 import java.util.*;
 
 public class Solution {
@@ -22,6 +26,7 @@ public class Solution {
 
     Solution solution = new Solution();
 
+    // Sorted
     nums = new int[] {2, 7, 11, 15};
   target = 9;
     expected = new int[] {0, 1};
@@ -40,6 +45,7 @@ public class Solution {
       System.out.printf("result: not matched nums: %s, target: %d, result: %s\n", Arrays.toString(nums), target, Arrays.toString(solution.twoSum(nums, target)));
     }  
 
+    // Not Sorted
     nums = new int[] {11, 7, 2, 15};
   target = 18;
     expected = new int[] {0, 1};

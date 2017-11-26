@@ -1,0 +1,16 @@
+Which three statements are true?
+
+A. A final method in class X can be abstract if and only if X is abstract.
+B. A protected method in class X can be overridden by any subclass of X.
+C. A private static method can be called only within other static methods in class X.
+D. A non-static public final method in class X can be overridden in any subclass of X.
+E. A public static method in class X can be called by a subclass of X without explicitly referencing the class X.
+F. A method with the same signature as a private final method in class X can be implemented in a subclass of X.
+G. A protected method in class X can be overridden by a subclass of X only if the subclass is in the same package as X.
+
+
+/*
+Answer:
+BEF
+*/
+

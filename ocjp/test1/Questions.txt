@@ -1,0 +1,184 @@
+[QUESTION 13]
+A programmer has an algorithm that requires a java.util.List that provides an efficient implementation of add(0, object), but does NOT need to support quick random access.
+What supports these requirements?
+
+A. java.util.Queue
+B. java.util.ArrayList
+C. java.util.LinearList
+D. java.util.LinkedList
+
+Answer: D
+
+
+[QUESTION 14]
+Gien a class whose instances, when found in a collection of objects, are sorted by using the compareTo() method, which two statements are true? (Choose two)
+
+A. The class implements java.lang.Comparable.
+B. The class implements java.util.Comparator.
+C. The interface used to implement sorting allows this class to define only one sort sequence.
+D. The interface used to implement sorting allows this class to define many different sort sequences.
+
+----------------------------------------
+class Movie implements Comparable<Movie> {
+  private double rating;
+  private String name;
+  private int year;
+
+  /* only one sort sequence */
+  public int compareTo(Movie m) {
+    return this.year - m.year;
+  }
+}
+
+----------------------------------------
+
+class Movie implements Comparable<Movie> {}
+
+class RatingCompare implements Comparator<Movie> {
+  public int compare(Movie m1, Movie m2) {}
+}
+
+class NameCompare implements Comparator<Movie> {
+  public int compare(Movie m1, Movie m2) {}
+}
+
+RatingCompare ratingCompare = new RatingCompare();
+Collections.sort(list, ratingCompare);
+
+[QUESTION 26]
+11. public void genNumbers() {
+12.   ArrayList numbers = new ArrayList();
+13.   for (int i = 0; i < 10; i++) {
+14.     int value = i * ((int) Math.random());
+15.     Integer intObj = new Integer(value);
+16.     numbers.add(intObj);
+17.   }
+18.   System.out.println(numbers);
+19. }
+
+Question: Which line of code marks the earlist point that an object referenced by intObj becomes a candidate for garbage collection?
+
+Answer: Line 19
+You probably think since the variables lifetime is ended at the end of the block, the object can be removed by the garbage collector. But since that object was added to the list numbers, it is still referenced. Therefore it's after the lifetime of numbers ends and the list can also be removed by the garbage collector.
+
+
+[QUESTION 27]
+1. public class GC {
+2.   private Object o;
+3.   private void doSomethingElse(Object obj) { o = obj; }
+4.   public void doSomething() {
+5.     Object o = new Object();
+6.     doSomethingElse(o);
+7.     o = new Object();
+8.     doSomethingElse(null);
+9.     o = null;
+10.  }
+11.}
+
+Question: When the doSomething method is called, after which line does the Object created in line 5 become available for garbage collection?
+Answer: Line 8
+
+
+[QUESTION 28]
+public class Spock {
+  public static void main(String[] args) {
+    Long tail = 2000L;
+    Long distance = 1999L;
+    Long story = 1000L;
+
+    if ((tail > distance) ^ ((story * 2) == tail))
+      System.out.print("1");
+    if ((distance + 1 != tail) ^ ((story * 2) == distance))
+      System.out.print("2");
+  }
+}
+
+Answer: No output is produced
+
+[QUESTION 2]
+interface DeclareStuff {
+  public static final int EASY=3;
+  void doStuff(int t);
+}
+
+public class TestDeclare implements DeclareStuff {
+  public static void main(String[] args) {
+    int x = 5;
+    new TestDeclare().doStuff(++x);
+  }
+
+  void doStuff(int s) {
+    s += EASY + ++s;
+    System.out.println("s " + s);
+  }
+}
+
+Answer: Compilation Error
+Explanation: Cannot reduce the visibility of the inherited method from DeclareStuff
+Interface methods are public so doStuff is public in DeclareStuff interface.
+doStuff is package-private (by default) in TestDeclare class and this visibility change is not allowed.
+
+
+[QUESTION 3]
+A class games.cards.Poker is correctly defined in the jar file Poker.jar.
+A user wants to execute the main method of Poker on a UNIX system using the command:
+
+java games.cards.Poker
+
+What allows the user to do this?
+
+A. putPoker.jarindirectory/stuff/java,andsettheCLASSPATHtoinclude/stuff/java
+B. putPoker.jarindirectory/stuff/java,andsettheCLASSPATHtoinclude/stuff/java/*.jar
+C. put Poker.jar in directory /stuff/java, and set the CLASSPATH to include /stuff/java/Poker.jar
+D. put Poker.jar in directory /stuff/java/games/cards, and set the CLASSPATH to include /stuff/java
+E. putPoker.jarindirectory/stuff/java/games/cards,andsettheCLASSPATHtoinclude/stuff/java/*.jar
+F. putPoker.jarindirectory/stuff/java/games/cards,andsettheCLASSPATHtoinclude/stuff/java/Poker. jar
+
+Answer: C
+
+
+
+[QUESTION 4]
+Given a correctly compiled class whose source code is:
+
+package com.sun.sjcp;
+
+public class Commander {
+  public static void main(String[] args) {
+    // more code here
+  }
+}
+
+Assume that the class file is located in /foo/com/sun/sjcp/, the current directory is /foo/, and that the classpath contains "." (current directory). Which command line correctly runs Commander?
+
+Answer: java com.sun.sjcp.Commander
+
+
+[QUESTION 5]
+
+interface DoStuff2 {
+  float getRange(int low, int high);
+}
+
+interface DoMore {
+  float getAvg(int a, int b, int c);
+}
+
+abstract class DoAbstract implements DoStuff2, DoMore {
+}
+
+class DoStuff implements DoStuff2 {
+  public float getRange(int x, int y) {
+    return 3.14f;
+  }
+}
+
+interface DoAll extends DoMore {
+  float getAvg(int a, int b, int c, int d);
+}
+
+What is the result?
+
+Answer: The file will compile without error.
+
+

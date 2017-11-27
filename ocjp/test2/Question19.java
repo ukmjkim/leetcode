@@ -17,7 +17,10 @@ class SubClass extends SuperClass {
 public class Question19 {
   public static void main(String... args) {
     SuperClass sb = new SubClass();
+    // try {
     sb.doIt("hello", 3);
+    // } catch(Exception e) {
+    // }
   }
 }
 
